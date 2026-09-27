@@ -10,6 +10,7 @@ export type Product = {
   bestSeller?: boolean;
   isNew?: boolean;
   readyToShip?: boolean;
+  image?: string;
 };
 
 export const styleLabels: Record<string, string> = {
@@ -26,6 +27,7 @@ export type Collection = {
   name: string;
   tagline: string;
   description: string;
+  image?: string;
   products: Product[];
 };
 
@@ -36,6 +38,7 @@ export const collections: Collection[] = [
     tagline: "One-of-a-kind settings, hand-fabricated in our atelier.",
     description:
       "Each engagement ring begins as a sketch and ends as an heirloom. Choose from signature settings or work with our designers to create something entirely your own.",
+    image: "/images/products/solstice-solitaire.png",
     products: [
       {
         slug: "solstice-solitaire",
@@ -48,6 +51,7 @@ export const collections: Collection[] = [
         style: "solitaire",
         bestSeller: true,
         readyToShip: true,
+        image: "/images/products/solstice-solitaire.png",
       },
       {
         slug: "aria-halo",
@@ -59,6 +63,7 @@ export const collections: Collection[] = [
         details: ["Pavé-set halo, 0.42ct total", "Platinum construction", "Comfort-fit interior"],
         style: "halo",
         bestSeller: true,
+        image: "/images/products/aria-halo.png",
       },
       {
         slug: "meridian-three-stone",
@@ -69,6 +74,7 @@ export const collections: Collection[] = [
           "Two tapered baguettes flank the center stone in a composition built for movement and everyday light.",
         details: ["Side stones: 0.60ct total", "18k white gold", "Custom stone shapes available"],
         style: "three-stone",
+        image: "/images/products/meridian-three-stone.png",
       },
       {
         slug: "urban-bezel-solitaire",
@@ -81,6 +87,7 @@ export const collections: Collection[] = [
         style: "bezel",
         readyToShip: true,
         isNew: true,
+        image: "/images/products/urban-bezel-solitaire.png",
       },
       {
         slug: "blush-pink-halo",
@@ -92,6 +99,7 @@ export const collections: Collection[] = [
         details: ["0.75ct fancy pink center stone", "Independently graded and certified", "18k rose gold"],
         style: "colored-pink",
         isNew: true,
+        image: "/images/products/blush-pink-halo.png",
       },
       {
         slug: "golden-canary-solitaire",
@@ -103,6 +111,7 @@ export const collections: Collection[] = [
         details: ["1.00ct fancy yellow center stone", "Independently graded and certified", "18k yellow gold"],
         style: "colored-yellow",
         isNew: true,
+        image: "/images/products/golden-canary-solitaire.png",
       },
     ],
   },
@@ -112,6 +121,7 @@ export const collections: Collection[] = [
     tagline: "Bands designed to sit flush with a lifetime of wear.",
     description:
       "Our bands are fitted to their partner ring and to the hand that will wear them — comfort-curved, hand-finished, and built to last generations.",
+    image: "/images/products/low-profile-pave.jpg",
     products: [
       {
         slug: "low-profile-pave",
@@ -121,6 +131,7 @@ export const collections: Collection[] = [
         description: "A slim band set edge-to-edge with pavé diamonds, finished flush for everyday wear.",
         details: ["2mm width", "Pavé-set, 0.35ct total", "Comfort-fit interior"],
         gender: "women",
+        image: "/images/products/low-profile-pave.jpg",
       },
       {
         slug: "classic-court",
@@ -130,6 +141,7 @@ export const collections: Collection[] = [
         description: "A rounded, high-polish profile — the quiet counterpart to a statement engagement ring.",
         details: ["3mm width", "Platinum construction", "Sized to fit flush against any shank"],
         gender: "unisex",
+        image: "/images/products/classic-court.jpg",
       },
       {
         slug: "brushed-satin-band",
@@ -139,6 +151,7 @@ export const collections: Collection[] = [
         gender: "men",
         description: "A matte, brushed finish with a polished edge for quiet contrast.",
         details: ["4mm width", "Hand-brushed finish", "Available in all metals"],
+        image: "/images/products/brushed-satin-band.jpg",
       },
     ],
   },
@@ -148,6 +161,7 @@ export const collections: Collection[] = [
     tagline: "Layerable pieces built around a single, considered stone.",
     description:
       "From everyday pendants to statement pieces for evening, each necklace is designed to sit close to the collarbone and catch light with movement.",
+    image: "/images/products/tension-bezel-pendant.jpg",
     products: [
       {
         slug: "tension-bezel-pendant",
@@ -156,6 +170,7 @@ export const collections: Collection[] = [
         metal: "18k White Gold",
         description: "A bezel-set diamond appears to float within its frame, suspended on a fine cable chain.",
         details: ["Adjustable 16\"–18\" chain", "0.30ct center stone", "Spring-ring clasp"],
+        image: "/images/products/tension-bezel-pendant.jpg",
       },
       {
         slug: "linked-station-necklace",
@@ -164,6 +179,7 @@ export const collections: Collection[] = [
         metal: "18k Yellow Gold",
         description: "Five bezel-set stones punctuate a delicate chain for subtle, continuous sparkle.",
         details: ["18\" chain length", "Five 0.05ct stations", "Lobster clasp"],
+        image: "/images/products/linked-station-necklace.jpg",
       },
       {
         slug: "collarbone-bar",
@@ -172,6 +188,7 @@ export const collections: Collection[] = [
         metal: "Platinum",
         description: "A slim horizontal bar set with a graduated diamond line, designed to sit flat.",
         details: ["Adjustable length", "Graduated pavé, 0.28ct total", "Platinum construction"],
+        image: "/images/products/collarbone-bar.png",
       },
     ],
   },
@@ -181,6 +198,7 @@ export const collections: Collection[] = [
     tagline: "From studs worn daily to drops made for evening.",
     description:
       "Our earrings are weighted and balanced by hand so that even the largest drop settles naturally against the ear.",
+    image: "/images/products/signature-studs.png",
     products: [
       {
         slug: "signature-studs",
@@ -189,6 +207,7 @@ export const collections: Collection[] = [
         metal: "Platinum",
         description: "Four-prong studs engineered for maximum light return with a secure, low-profile back.",
         details: ["0.50ct each, 1.00ct total", "Platinum posts and backs", "Screw-back option available"],
+        image: "/images/products/signature-studs.png",
       },
       {
         slug: "cascade-drops",
@@ -197,6 +216,7 @@ export const collections: Collection[] = [
         metal: "18k White Gold",
         description: "A graduated line of bezel-set stones falls just below the earlobe for quiet movement.",
         details: ["1.5\" drop length", "Graduated diamonds, 0.65ct total", "Lever-back closure"],
+        image: "/images/products/cascade-drops.png",
       },
       {
         slug: "huggie-hoops",
@@ -205,6 +225,7 @@ export const collections: Collection[] = [
         metal: "18k Yellow Gold",
         description: "Close-fitting hoops set edge-to-edge with pavé for everyday wear.",
         details: ["12mm diameter", "Pavé-set, 0.40ct total", "Hinged closure"],
+        image: "/images/products/huggie-hoops.jpg",
       },
     ],
   },
@@ -214,6 +235,7 @@ export const collections: Collection[] = [
     tagline: "Structured cuffs and fine tennis lines, built to layer.",
     description:
       "Whether stacked or worn alone, each bracelet is fitted for a precise, comfortable drape on the wrist.",
+    image: "/images/products/line-tennis-bracelet.jpg",
     products: [
       {
         slug: "line-tennis-bracelet",
@@ -222,6 +244,7 @@ export const collections: Collection[] = [
         metal: "18k White Gold",
         description: "A continuous line of matched round brilliants set in a flexible, articulated mount.",
         details: ["7\" length, extendable", "3.00ct total weight", "Box clasp with safety"],
+        image: "/images/products/line-tennis-bracelet.jpg",
       },
       {
         slug: "sculpted-cuff",
@@ -230,6 +253,7 @@ export const collections: Collection[] = [
         metal: "18k Yellow Gold",
         description: "A hand-hammered open cuff with a tapered profile, cast from a hand-carved model.",
         details: ["One size, hand-adjustable", "Hand-hammered finish", "Solid 18k gold"],
+        image: "/images/products/sculpted-cuff.jpg",
       },
     ],
   },

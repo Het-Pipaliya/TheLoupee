@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -43,7 +44,13 @@ export default async function ProductPage({
 
       <div className="mt-8 grid gap-12 lg:grid-cols-2">
         <div className="grid gap-4 sm:grid-cols-2">
-          <PlaceholderImage ratio="portrait" label={product.metal} className="sm:col-span-2" />
+          {product.image ? (
+            <div className="relative aspect-[3/4] overflow-hidden bg-ivory sm:col-span-2">
+              <Image src={product.image} alt={product.name} fill priority className="object-cover" />
+            </div>
+          ) : (
+            <PlaceholderImage ratio="portrait" label={product.metal} className="sm:col-span-2" />
+          )}
           <PlaceholderImage ratio="square" label="Detail" />
           <PlaceholderImage ratio="square" label="On hand" />
         </div>
@@ -86,7 +93,19 @@ export default async function ProductPage({
           <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {otherProducts.map((p) => (
               <Link key={p.slug} href={`/collections/${collection.slug}/${p.slug}`} className="group block">
-                <PlaceholderImage label={p.metal} className="transition-opacity group-hover:opacity-80" />
+                {p.image ? (
+                  <div className="relative aspect-[3/4] overflow-hidden bg-ivory">
+                    <Image
+                      src={p.image}
+                      alt={p.name}
+                      fill
+                      className="object-cover transition-opacity group-hover:opacity-80"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                  </div>
+                ) : (
+                  <PlaceholderImage label={p.metal} className="transition-opacity group-hover:opacity-80" />
+                )}
                 <div className="mt-4 flex items-baseline justify-between gap-4">
                   <h3 className="font-display text-lg">{p.name}</h3>
                   <span className="text-sm text-charcoal/70">{p.price}</span>

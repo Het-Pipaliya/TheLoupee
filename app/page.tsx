@@ -62,7 +62,19 @@ export default function Home() {
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {collections.slice(0, 6).map((collection) => (
             <Link key={collection.slug} href={`/collections/${collection.slug}`} className="group block">
-              <PlaceholderImage ratio="square" label={collection.name} className="transition-opacity group-hover:opacity-80" />
+              {collection.image ? (
+                <div className="relative aspect-square overflow-hidden bg-ivory">
+                  <Image
+                    src={collection.image}
+                    alt={collection.name}
+                    fill
+                    className="object-cover transition-opacity group-hover:opacity-80"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                </div>
+              ) : (
+                <PlaceholderImage ratio="square" label={collection.name} className="transition-opacity group-hover:opacity-80" />
+              )}
               <h3 className="mt-4 font-display text-xl">{collection.name}</h3>
               <p className="mt-1 text-sm text-charcoal/60">{collection.tagline}</p>
             </Link>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -58,7 +59,13 @@ export default async function CollectionPage({
   return (
     <div>
       <section className="relative">
-        <PlaceholderImage ratio="wide" label={collection.name} className="h-[45vh] w-full" />
+        {collection.image ? (
+          <div className="relative h-[45vh] w-full overflow-hidden bg-ivory">
+            <Image src={collection.image} alt={collection.name} fill priority className="object-cover" />
+          </div>
+        ) : (
+          <PlaceholderImage ratio="wide" label={collection.name} className="h-[45vh] w-full" />
+        )}
         <div className="absolute inset-0 flex items-center bg-ink/30">
           <div className="container-fluid">
             <Link href="/collections" className="text-xs uppercase tracking-label text-paper/70 hover:text-gold-light">
