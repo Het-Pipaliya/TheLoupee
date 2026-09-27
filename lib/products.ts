@@ -5,6 +5,20 @@ export type Product = {
   metal: string;
   description: string;
   details: string[];
+  style?: string;
+  gender?: "women" | "men" | "unisex";
+  bestSeller?: boolean;
+  isNew?: boolean;
+  readyToShip?: boolean;
+};
+
+export const styleLabels: Record<string, string> = {
+  solitaire: "Solitaire",
+  bezel: "Bezel",
+  halo: "Halo",
+  "three-stone": "Three-Stone",
+  "colored-pink": "Pink Diamond",
+  "colored-yellow": "Yellow Diamond",
 };
 
 export type Collection = {
@@ -31,6 +45,9 @@ export const collections: Collection[] = [
         description:
           "A tapered cathedral shank lifts a single round brilliant into the light, its lines polished to a mirror finish.",
         details: ["Center stone sold separately", "Available in 18k gold or platinum", "Hand-fabricated, not cast"],
+        style: "solitaire",
+        bestSeller: true,
+        readyToShip: true,
       },
       {
         slug: "aria-halo",
@@ -40,6 +57,8 @@ export const collections: Collection[] = [
         description:
           "A micro-pavé halo wraps the center stone in constant light, set on a knife-edge band for a weightless profile.",
         details: ["Pavé-set halo, 0.42ct total", "Platinum construction", "Comfort-fit interior"],
+        style: "halo",
+        bestSeller: true,
       },
       {
         slug: "meridian-three-stone",
@@ -49,6 +68,41 @@ export const collections: Collection[] = [
         description:
           "Two tapered baguettes flank the center stone in a composition built for movement and everyday light.",
         details: ["Side stones: 0.60ct total", "18k white gold", "Custom stone shapes available"],
+        style: "three-stone",
+      },
+      {
+        slug: "urban-bezel-solitaire",
+        name: "Urban Bezel Solitaire",
+        price: "$5,600",
+        metal: "18k Yellow Gold",
+        description:
+          "A flush bezel wraps the center stone in a continuous line of metal, built for daily wear without a prong in sight.",
+        details: ["Center stone sold separately", "Available in 18k gold or platinum", "Hand-fabricated, not cast"],
+        style: "bezel",
+        readyToShip: true,
+        isNew: true,
+      },
+      {
+        slug: "blush-pink-halo",
+        name: "Blush Pink Halo",
+        price: "$11,200",
+        metal: "18k Rose Gold",
+        description:
+          "A fancy pink diamond center stone sits inside a bright halo of white diamonds, warmed by a rose gold band.",
+        details: ["0.75ct fancy pink center stone", "Independently graded and certified", "18k rose gold"],
+        style: "colored-pink",
+        isNew: true,
+      },
+      {
+        slug: "golden-canary-solitaire",
+        name: "Golden Canary Solitaire",
+        price: "$9,800",
+        metal: "18k Yellow Gold",
+        description:
+          "A fancy yellow diamond is set high in a simple four-prong crown, letting its color carry the design.",
+        details: ["1.00ct fancy yellow center stone", "Independently graded and certified", "18k yellow gold"],
+        style: "colored-yellow",
+        isNew: true,
       },
     ],
   },
@@ -66,6 +120,7 @@ export const collections: Collection[] = [
         metal: "18k Rose Gold",
         description: "A slim band set edge-to-edge with pavé diamonds, finished flush for everyday wear.",
         details: ["2mm width", "Pavé-set, 0.35ct total", "Comfort-fit interior"],
+        gender: "women",
       },
       {
         slug: "classic-court",
@@ -74,12 +129,14 @@ export const collections: Collection[] = [
         metal: "Platinum",
         description: "A rounded, high-polish profile — the quiet counterpart to a statement engagement ring.",
         details: ["3mm width", "Platinum construction", "Sized to fit flush against any shank"],
+        gender: "unisex",
       },
       {
         slug: "brushed-satin-band",
         name: "Brushed Satin Band",
         price: "$1,650",
         metal: "18k Yellow Gold",
+        gender: "men",
         description: "A matte, brushed finish with a polished edge for quiet contrast.",
         details: ["4mm width", "Hand-brushed finish", "Available in all metals"],
       },
@@ -215,4 +272,32 @@ export function getProduct(collectionSlug: string, productSlug: string) {
 
 export function getFeaturedProducts(count: number) {
   return collections.flatMap((c) => c.products.map((p) => ({ ...p, collectionSlug: c.slug, collectionName: c.name }))).slice(0, count);
+}
+
+export type CollectionFilters = {
+  style?: string;
+  gender?: string;
+  show?: "best-sellers" | "new" | "ready-to-ship";
+};
+
+export function filterProducts(products: Product[], filters: CollectionFilters) {
+  return products.filter((p) => {
+    if (filters.style && p.style !== filters.style) return false;
+    if (filters.gender && p.gender !== filters.gender) return false;
+    if (filters.show === "best-sellers" && !p.bestSeller) return false;
+    if (filters.show === "new" && !p.isNew) return false;
+    if (filters.show === "ready-to-ship" && !p.readyToShip) return false;
+    return true;
+  });
+}
+
+export function getAvailableStyles(products: Product[]) {
+  const styles = Array.from(new Set(products.map((p) => p.style).filter(Boolean))) as string[];
+  return styles.map((style) => ({ value: style, label: styleLabels[style] ?? style }));
+}
+
+export function getAvailableGenders(products: Product[]) {
+  const genders = Array.from(new Set(products.map((p) => p.gender).filter(Boolean))) as string[];
+  const labels: Record<string, string> = { women: "Women's", men: "Men's", unisex: "Unisex" };
+  return genders.map((gender) => ({ value: gender, label: labels[gender] ?? gender }));
 }

@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ProductCard from "@/components/ProductCard";
 import { collections, getFeaturedProducts } from "@/lib/products";
+import heroImage from "@/public/images/hero-hands.webp";
 
 export default function Home() {
   const featured = getFeaturedProducts(4);
@@ -9,8 +11,14 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative">
-        <PlaceholderImage ratio="wide" label="Atelier — hand-fabrication" className="h-[70vh] w-full" />
+      <section className="relative h-[70vh] w-full overflow-hidden">
+        <Image
+          src={heroImage}
+          alt="Model wearing layered diamond rings and earrings"
+          fill
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 flex items-center bg-ink/20">
           <div className="container-fluid">
             <p className="text-xs uppercase tracking-label text-paper/80">Fine Jewelry &amp; Watches</p>

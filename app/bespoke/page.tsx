@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import PlaceholderImage from "@/components/PlaceholderImage";
 
 export const metadata: Metadata = {
-  title: "Bespoke Design | The Loupee",
-  description: "Design a one-of-a-kind piece with The Loupee's in-house designers and goldsmiths.",
+  title: "Bespoke Design | Loupe",
+  description: "Design a one-of-a-kind piece with Loupe's in-house designers and goldsmiths.",
 };
 
 const steps = [

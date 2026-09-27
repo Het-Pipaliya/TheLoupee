@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import PlaceholderImage from "@/components/PlaceholderImage";
 
 export const metadata: Metadata = {
-  title: "Our Story | The Loupee",
-  description: "The story, atelier, and values behind The Loupee.",
+  title: "Our Story | Loupe",
+  description: "The story, atelier, and values behind Loupe.",
 };
 
 export default function AboutPage() {
@@ -25,7 +25,7 @@ export default function AboutPage() {
         <div>
           <h2 className="font-display text-3xl">A House Built on the Bench</h2>
           <p className="mt-4 leading-relaxed text-charcoal/75">
-            The Loupee began as a single goldsmith&apos;s bench and a
+            Loupe began as a single goldsmith&apos;s bench and a
             conviction that fine jewelry should be made, not merely
             assembled. Today our designers, gemologists, and goldsmiths
             still work under one roof, so that every commission &mdash;

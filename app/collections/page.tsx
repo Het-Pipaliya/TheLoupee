@@ -4,8 +4,8 @@ import { collections } from "@/lib/products";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Collections | The Loupee",
-  description: "Browse The Loupee's collections of engagement rings, fine jewelry, and watches.",
+  title: "Collections | Loupe",
+  description: "Browse Loupe's collections of engagement rings, fine jewelry, and watches.",
 };
 
 export default function CollectionsPage() {
