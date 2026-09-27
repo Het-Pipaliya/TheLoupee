@@ -3,8 +3,8 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact | The Loupee",
-  description: "Book a consultation or reach The Loupee's atelier.",
+  title: "Contact | Loupe",
+  description: "Book a consultation or reach Loupe's atelier.",
 };
 
 export default function ContactPage() {

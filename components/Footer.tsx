@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer className="border-t border-line bg-ink text-paper">
       <div className="container-fluid grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="font-display text-2xl tracking-wide">THE LOUPEE</p>
+          <Logo wordmarkClassName="text-2xl" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-paper/70">
             Fine jewelry and watches, hand-fabricated in our atelier. Every
             piece — signature or bespoke — is built around the person who
@@ -45,7 +46,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="container-fluid flex flex-col gap-2 border-t border-paper/10 py-6 text-xs text-paper/50 md:flex-row md:items-center md:justify-between">
-        <p>&copy; {new Date().getFullYear()} The Loupee. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Loupe. All rights reserved.</p>
         <p>Private consultations by appointment.</p>
       </div>
     </footer>

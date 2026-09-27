@@ -17,9 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "The Loupee | Fine Jewelry & Watches",
+  title: "Loupe | Fine Jewelry & Watches",
   description:
-    "The Loupee designs and hand-fabricates engagement rings, fine jewelry, and curated watches in our atelier, with bespoke commissions built around you.",
+    "Loupe designs and hand-fabricates engagement rings, fine jewelry, and curated watches in our atelier, with bespoke commissions built around you.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
