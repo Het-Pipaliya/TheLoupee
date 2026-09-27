@@ -11,21 +11,16 @@ export default function Logo({
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <svg
         viewBox="0 0 100 100"
-        className={`h-7 w-7 shrink-0 ${markClassName}`}
+        className={`h-8 w-8 shrink-0 ${markClassName}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="42" cy="46" r="27" stroke="currentColor" strokeWidth="6" />
-        <circle cx="76" cy="24" r="10" stroke="currentColor" strokeWidth="4" />
-        <path
-          d="M76 19v10M71 24h10"
-          stroke="currentColor"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-        />
-        <path d="M58 63 L74 82 L62 79 Z" fill="currentColor" />
+        <circle cx="46" cy="50" r="30" stroke="currentColor" strokeWidth="9" />
+        <circle cx="67" cy="30" r="9" stroke="currentColor" strokeWidth="3.6" />
+        <path d="M67 26v8M63 30h8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+        <path d="M64 74 L76 86 L58 79 Z" fill="currentColor" />
       </svg>
-      <span className={`font-display tracking-wide ${wordmarkClassName}`}>LOUPE</span>
+      <span className={`font-sans font-light tracking-[0.35em] ${wordmarkClassName}`}>LOUPE</span>
     </span>
   );
 }
