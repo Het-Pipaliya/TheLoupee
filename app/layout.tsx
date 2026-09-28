@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import HeaderSpacer from "@/components/HeaderSpacer";
 import Footer from "@/components/Footer";
+import PrivateClientWidget from "@/components/PrivateClientWidget";
+import CustomCursor from "@/components/CustomCursor";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -27,8 +30,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${cormorant.variable} ${inter.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <Header />
+        <HeaderSpacer />
         <main className="flex-1">{children}</main>
         <Footer />
+        <PrivateClientWidget />
+        <CustomCursor />
       </body>
     </html>
   );
