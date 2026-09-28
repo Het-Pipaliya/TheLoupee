@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import ProductPhoto from "@/components/ProductPhoto";
 import { collections, getProduct } from "@/lib/products";
 
 export function generateStaticParams() {
@@ -42,10 +43,16 @@ export default async function ProductPage({
       </Link>
 
       <div className="mt-8 grid gap-12 lg:grid-cols-2">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <PlaceholderImage ratio="portrait" label={product.metal} className="sm:col-span-2" />
-          <PlaceholderImage ratio="square" label="Detail" />
-          <PlaceholderImage ratio="square" label="On hand" />
+        <div>
+          {product.image ? (
+            <ProductPhoto src={product.image} alt={product.name} priority className="w-full" />
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2">
+              <PlaceholderImage ratio="portrait" label={product.metal} className="sm:col-span-2" />
+              <PlaceholderImage ratio="square" label="Detail" />
+              <PlaceholderImage ratio="square" label="On hand" />
+            </div>
+          )}
         </div>
 
         <div>
@@ -86,7 +93,12 @@ export default async function ProductPage({
           <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {otherProducts.map((p) => (
               <Link key={p.slug} href={`/collections/${collection.slug}/${p.slug}`} className="group block">
-                <PlaceholderImage label={p.metal} className="transition-opacity group-hover:opacity-80" />
+                <ProductPhoto
+                  src={p.image}
+                  alt={p.name}
+                  label={p.metal}
+                  className="transition-opacity group-hover:opacity-80"
+                />
                 <div className="mt-4 flex items-baseline justify-between gap-4">
                   <h3 className="font-display text-lg">{p.name}</h3>
                   <span className="text-sm text-charcoal/70">{p.price}</span>

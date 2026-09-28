@@ -1,6 +1,6 @@
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
-import { collections } from "@/lib/products";
+import ProductPhoto from "@/components/ProductPhoto";
+import { collections, getCollectionThumbnail } from "@/lib/products";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -23,7 +23,12 @@ export default function CollectionsPage() {
       <div className="mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
         {collections.map((collection) => (
           <Link key={collection.slug} href={`/collections/${collection.slug}`} className="group block">
-            <PlaceholderImage ratio="portrait" label={`${collection.products.length} pieces`} className="transition-opacity group-hover:opacity-80" />
+            <ProductPhoto
+              src={getCollectionThumbnail(collection)}
+              alt={collection.name}
+              label={`${collection.products.length} pieces`}
+              className="transition-opacity group-hover:opacity-80"
+            />
             <h2 className="mt-4 font-display text-2xl">{collection.name}</h2>
             <p className="mt-1 text-sm text-charcoal/60">{collection.tagline}</p>
           </Link>
