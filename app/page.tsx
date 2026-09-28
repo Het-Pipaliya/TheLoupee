@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ProductCard from "@/components/ProductCard";
-import { collections, getFeaturedProducts } from "@/lib/products";
+import ProductPhoto from "@/components/ProductPhoto";
+import { collections, getCollectionThumbnail, getFeaturedProducts } from "@/lib/products";
 import heroImage from "@/public/images/hero-hands.webp";
 
 export default function Home() {
@@ -62,7 +63,12 @@ export default function Home() {
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {collections.slice(0, 6).map((collection) => (
             <Link key={collection.slug} href={`/collections/${collection.slug}`} className="group block">
-              <PlaceholderImage ratio="square" label={collection.name} className="transition-opacity group-hover:opacity-80" />
+              <ProductPhoto
+                src={getCollectionThumbnail(collection)}
+                alt={collection.name}
+                label={collection.name}
+                className="transition-opacity group-hover:opacity-80"
+              />
               <h3 className="mt-4 font-display text-xl">{collection.name}</h3>
               <p className="mt-1 text-sm text-charcoal/60">{collection.tagline}</p>
             </Link>

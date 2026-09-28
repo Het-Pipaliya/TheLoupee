@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PlaceholderImage from "./PlaceholderImage";
+import ProductPhoto from "./ProductPhoto";
 import type { Product } from "@/lib/products";
 
 export default function ProductCard({
@@ -11,7 +11,12 @@ export default function ProductCard({
 }) {
   return (
     <Link href={`/collections/${collectionSlug}/${product.slug}`} className="group block">
-      <PlaceholderImage label={product.metal} className="transition-opacity group-hover:opacity-80" />
+      <ProductPhoto
+        src={product.image}
+        alt={product.name}
+        label={product.metal}
+        className="transition-opacity group-hover:opacity-80"
+      />
       <div className="mt-4 flex items-baseline justify-between gap-4">
         <h3 className="font-display text-lg">{product.name}</h3>
         <span className="text-sm text-charcoal/70">{product.price}</span>

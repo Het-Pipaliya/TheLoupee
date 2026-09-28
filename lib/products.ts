@@ -10,6 +10,7 @@ export type Product = {
   bestSeller?: boolean;
   isNew?: boolean;
   readyToShip?: boolean;
+  image?: string;
 };
 
 export const styleLabels: Record<string, string> = {
@@ -39,6 +40,7 @@ export const collections: Collection[] = [
     products: [
       {
         slug: "solstice-solitaire",
+        image: "/images/products/solstice-solitaire.jpg",
         name: "Solstice Solitaire",
         price: "$6,800",
         metal: "18k Yellow Gold",
@@ -51,6 +53,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "aria-halo",
+        image: "/images/products/aria-halo.jpg",
         name: "Aria Halo",
         price: "$8,200",
         metal: "Platinum",
@@ -62,6 +65,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "meridian-three-stone",
+        image: "/images/products/meridian-three-stone.jpg",
         name: "Meridian Three-Stone",
         price: "$9,600",
         metal: "18k White Gold",
@@ -72,6 +76,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "urban-bezel-solitaire",
+        image: "/images/products/urban-bezel-solitaire.jpg",
         name: "Urban Bezel Solitaire",
         price: "$5,600",
         metal: "18k Yellow Gold",
@@ -84,6 +89,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "blush-pink-halo",
+        image: "/images/products/blush-pink-halo.jpg",
         name: "Blush Pink Halo",
         price: "$11,200",
         metal: "18k Rose Gold",
@@ -124,6 +130,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "classic-court",
+        image: "/images/products/classic-court.jpg",
         name: "Classic Court",
         price: "$1,150",
         metal: "Platinum",
@@ -133,6 +140,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "brushed-satin-band",
+        image: "/images/products/brushed-satin-band.jpg",
         name: "Brushed Satin Band",
         price: "$1,650",
         metal: "18k Yellow Gold",
@@ -151,6 +159,7 @@ export const collections: Collection[] = [
     products: [
       {
         slug: "tension-bezel-pendant",
+        image: "/images/products/tension-bezel-pendant.jpg",
         name: "Tension Bezel Pendant",
         price: "$3,100",
         metal: "18k White Gold",
@@ -167,6 +176,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "collarbone-bar",
+        image: "/images/products/collarbone-bar.jpg",
         name: "Collarbone Bar",
         price: "$2,650",
         metal: "Platinum",
@@ -184,6 +194,7 @@ export const collections: Collection[] = [
     products: [
       {
         slug: "signature-studs",
+        image: "/images/products/signature-studs.jpg",
         name: "Signature Studs",
         price: "$3,400",
         metal: "Platinum",
@@ -192,6 +203,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "cascade-drops",
+        image: "/images/products/cascade-drops.jpg",
         name: "Cascade Drops",
         price: "$5,900",
         metal: "18k White Gold",
@@ -217,6 +229,7 @@ export const collections: Collection[] = [
     products: [
       {
         slug: "line-tennis-bracelet",
+        image: "/images/products/line-tennis-bracelet.jpg",
         name: "Line Tennis Bracelet",
         price: "$7,200",
         metal: "18k White Gold",
@@ -225,6 +238,7 @@ export const collections: Collection[] = [
       },
       {
         slug: "sculpted-cuff",
+        image: "/images/products/sculpted-cuff.jpg",
         name: "Sculpted Cuff",
         price: "$4,800",
         metal: "18k Yellow Gold",
@@ -272,6 +286,10 @@ export function getProduct(collectionSlug: string, productSlug: string) {
 
 export function getFeaturedProducts(count: number) {
   return collections.flatMap((c) => c.products.map((p) => ({ ...p, collectionSlug: c.slug, collectionName: c.name }))).slice(0, count);
+}
+
+export function getCollectionThumbnail(collection: Collection) {
+  return collection.products.find((p) => p.image)?.image;
 }
 
 export type CollectionFilters = {
