@@ -11,6 +11,7 @@ export type Product = {
   isNew?: boolean;
   readyToShip?: boolean;
   image?: string;
+  priceOnRequest?: boolean;
 };
 
 export const styleLabels: Record<string, string> = {

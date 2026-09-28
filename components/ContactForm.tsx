@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ContactForm() {
+  const searchParams = useSearchParams();
+  const piece = searchParams.get("piece");
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -15,8 +18,7 @@ export default function ContactForm() {
       <div className="border border-line bg-ivory p-8 text-center">
         <p className="font-display text-2xl">Thank you.</p>
         <p className="mt-2 text-sm text-charcoal/70">
-          We&apos;ve received your message and will reply within one
-          business day to schedule your consultation.
+          A LOUPE jewelry specialist will contact you shortly.
         </p>
       </div>
     );
@@ -35,27 +37,33 @@ export default function ContactForm() {
           />
         </label>
         <label className="flex flex-col gap-2 text-xs uppercase tracking-label">
-          Email
+          Phone
           <input
             required
-            name="email"
-            type="email"
+            name="phone"
+            type="tel"
             className="border border-line bg-transparent px-4 py-3 text-sm font-normal normal-case tracking-normal focus:border-gold focus:outline-none"
           />
         </label>
       </div>
       <label className="flex flex-col gap-2 text-xs uppercase tracking-label">
-        I&apos;m interested in
+        Email
+        <input
+          required
+          name="email"
+          type="email"
+          className="border border-line bg-transparent px-4 py-3 text-sm font-normal normal-case tracking-normal focus:border-gold focus:outline-none"
+        />
+      </label>
+      <label className="flex flex-col gap-2 text-xs uppercase tracking-label">
+        Preferred Contact Method
         <select
-          name="interest"
+          name="preferredContact"
           className="border border-line bg-transparent px-4 py-3 text-sm font-normal normal-case tracking-normal focus:border-gold focus:outline-none"
         >
-          <option>Engagement Rings</option>
-          <option>Bespoke Design</option>
-          <option>Wedding Bands</option>
-          <option>Fine Jewelry</option>
-          <option>Watches</option>
-          <option>Repairs & Servicing</option>
+          <option>Call</option>
+          <option>Text</option>
+          <option>Email</option>
         </select>
       </label>
       <label className="flex flex-col gap-2 text-xs uppercase tracking-label">
@@ -63,11 +71,12 @@ export default function ContactForm() {
         <textarea
           name="message"
           rows={5}
+          defaultValue={piece ? `I am interested in ${piece}.` : undefined}
           className="border border-line bg-transparent px-4 py-3 text-sm font-normal normal-case tracking-normal focus:border-gold focus:outline-none"
         />
       </label>
       <button type="submit" className="btn-primary justify-self-start">
-        Send Message
+        Request Details
       </button>
     </form>
   );

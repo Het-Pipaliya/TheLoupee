@@ -1,138 +1,132 @@
-import Image from "next/image";
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import Hero from "@/components/Hero";
+import BrandStatement from "@/components/BrandStatement";
+import FeaturedSplit from "@/components/FeaturedSplit";
+import CollectionCard from "@/components/CollectionCard";
 import ProductCard from "@/components/ProductCard";
-import ProductPhoto from "@/components/ProductPhoto";
-import { collections, getCollectionThumbnail, getFeaturedProducts } from "@/lib/products";
+import CraftsmanshipStory from "@/components/CraftsmanshipStory";
+import PrivateClientSection from "@/components/PrivateClientSection";
+import Reveal, { RevealGroup, RevealItem } from "@/components/Reveal";
+import { collections, getCollection, getCollectionThumbnail, getFeaturedProducts } from "@/lib/products";
 import heroImage from "@/public/images/hero-hands.webp";
 
 export default function Home() {
   const featured = getFeaturedProducts(4);
+  const engagementRings = getCollection("engagement-rings")!;
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative h-[70vh] w-full overflow-hidden">
-        <Image
-          src={heroImage}
-          alt="Model wearing layered diamond rings and earrings"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 flex items-center bg-ink/20">
-          <div className="container-fluid">
-            <p className="text-xs uppercase tracking-label text-paper/80">Fine Jewelry &amp; Watches</p>
-            <h1 className="mt-4 max-w-2xl font-display text-5xl leading-tight text-paper md:text-6xl">
-              Jewelry built around the person who wears it.
-            </h1>
-            <p className="mt-6 max-w-md text-paper/85">
-              Hand-fabricated engagement rings, fine jewelry, and curated
-              watches — designed in dialogue with you, made in our atelier.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/collections/engagement-rings" className="btn-primary">
-                Shop Engagement Rings
+      <Hero image={heroImage} />
+
+      <FeaturedSplit
+        eyebrow="Signature Setting"
+        title="Solstice Solitaire"
+        description="A tapered cathedral shank lifts a single round brilliant into the light, its lines polished to a mirror finish — hand-fabricated, not cast, and built to be worn every day for the rest of a life."
+        href="/collections/engagement-rings/solstice-solitaire"
+        cta="Discover the Setting"
+        image={getCollectionThumbnail(engagementRings)}
+        imageAlt="Solstice Solitaire engagement ring"
+      />
+
+      <section className="section-space">
+        <div className="container-fluid">
+          <div className="flex items-end justify-between">
+            <Reveal>
+              <h2 className="font-display text-3xl md:text-4xl">Shop by Collection</h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <Link href="/collections" className="btn-text">
+                View All
+                <span className="arrow">&rarr;</span>
               </Link>
-              <Link href="/bespoke" className="btn-outline !border-paper !text-paper hover:!bg-paper hover:!text-ink">
-                Start a Bespoke Design
-              </Link>
-            </div>
+            </Reveal>
           </div>
+          <RevealGroup className="mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+            {collections.slice(0, 6).map((collection) => (
+              <RevealItem key={collection.slug}>
+                <CollectionCard
+                  href={`/collections/${collection.slug}`}
+                  name={collection.name}
+                  tagline={collection.tagline}
+                  image={getCollectionThumbnail(collection)}
+                />
+              </RevealItem>
+            ))}
+          </RevealGroup>
         </div>
       </section>
 
-      {/* Intro statement */}
-      <section className="container-fluid py-20 text-center">
-        <p className="mx-auto max-w-3xl font-display text-2xl leading-relaxed text-charcoal md:text-3xl">
-          Every piece we make begins the same way: a conversation. From a
-          single sketch to the final polish, our designers and goldsmiths
-          work under one roof — so what you commission is exactly what you
-          receive.
-        </p>
-      </section>
+      <BrandStatement
+        eyebrow="Our Philosophy"
+        lines={["Made by hand.", "Made for one."]}
+      />
 
-      {/* Collections grid */}
-      <section className="container-fluid pb-20">
-        <div className="flex items-end justify-between">
-          <h2 className="font-display text-3xl">Shop by Collection</h2>
-          <Link href="/collections" className="text-xs uppercase tracking-label hover:text-gold">
-            View All
-          </Link>
-        </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {collections.slice(0, 6).map((collection) => (
-            <Link key={collection.slug} href={`/collections/${collection.slug}`} className="group block">
-              <ProductPhoto
-                src={getCollectionThumbnail(collection)}
-                alt={collection.name}
-                label={collection.name}
-                className="transition-opacity group-hover:opacity-80"
-              />
-              <h3 className="mt-4 font-display text-xl">{collection.name}</h3>
-              <p className="mt-1 text-sm text-charcoal/60">{collection.tagline}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Bespoke banner */}
-      <section className="bg-charcoal text-paper">
-        <div className="container-fluid grid gap-10 py-20 md:grid-cols-2 md:items-center">
+      <section className="relative section-space overflow-hidden bg-charcoal text-paper">
+        <div className="container-fluid grid gap-12 md:grid-cols-2 md:items-center md:gap-20">
           <div>
-            <p className="text-xs uppercase tracking-label text-gold-light">Bespoke Design</p>
-            <h2 className="mt-4 font-display text-4xl leading-tight">
-              Can&apos;t find it in our collections? Let&apos;s design it together.
-            </h2>
-            <p className="mt-6 max-w-md text-paper/75">
-              Our bespoke process pairs you with a designer for a private
-              consultation, hand-rendered sketches, and a 3D model you can
-              review before a single stone is set.
-            </p>
-            <Link href="/bespoke" className="mt-8 inline-flex btn-primary !bg-gold !text-ink hover:!bg-gold-light">
-              Explore Bespoke Design
-            </Link>
+            <Reveal>
+              <p className="text-xs uppercase tracking-[0.3em] text-gold-light">The Bespoke Experience</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="mt-6 font-display text-4xl leading-tight md:text-5xl">
+                Can&apos;t find it in our collections?
+                <br />
+                Let&apos;s design it together.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 max-w-md text-paper/75">
+                Our bespoke process pairs you with a designer for a private
+                consultation, hand-rendered sketches, and a 3D model you can
+                review before a single stone is set.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <Link href="/bespoke" className="mt-9 inline-flex btn-primary !bg-gold !text-ink !border-gold hover:!bg-paper">
+                Begin Your Commission
+              </Link>
+            </Reveal>
           </div>
-          <PlaceholderImage ratio="landscape" tone="charcoal" label="Design consultation" />
+          <Reveal delay={0.15} className="border border-paper/15 bg-paper/5 p-10 md:p-14">
+            <ol className="flex flex-col gap-6 text-sm">
+              {["Consultation", "Design", "Stone Selection", "Hand Fabrication", "Final Presentation"].map(
+                (step, i) => (
+                  <li key={step} className="flex items-baseline gap-4 border-b border-paper/10 pb-6 last:border-0 last:pb-0">
+                    <span className="font-display text-xl text-gold-light">0{i + 1}</span>
+                    <span className="uppercase tracking-[0.16em] text-paper/85">{step}</span>
+                  </li>
+                ),
+              )}
+            </ol>
+          </Reveal>
         </div>
       </section>
 
-      {/* Featured pieces */}
-      <section className="container-fluid py-20">
-        <div className="flex items-end justify-between">
-          <h2 className="font-display text-3xl">Recently Added</h2>
-        </div>
-        <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((product) => (
-            <ProductCard key={product.slug} product={product} collectionSlug={product.collectionSlug} />
-          ))}
-        </div>
-      </section>
-
-      {/* Craftsmanship */}
-      <section className="border-t border-line bg-ivory">
-        <div className="container-fluid grid gap-12 py-20 md:grid-cols-3">
-          {[
-            {
-              title: "Hand-Fabricated",
-              body: "Nearly every piece is built by hand from raw metal, not cast from a mold — the traditional goldsmith's method.",
-            },
-            {
-              title: "Ethically Sourced",
-              body: "Every diamond and gemstone is traceable, conflict-free, and independently graded before it reaches the bench.",
-            },
-            {
-              title: "Made to Last",
-              body: "Each commission includes lifetime cleaning, inspection, and complimentary resizing within the first year.",
-            },
-          ].map((item) => (
-            <div key={item.title}>
-              <h3 className="font-display text-2xl">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-charcoal/70">{item.body}</p>
+      <section className="section-space">
+        <div className="container-fluid">
+          <div className="flex items-end justify-between">
+            <div>
+              <Reveal>
+                <h2 className="font-display text-3xl md:text-4xl">Recently Added</h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="mt-2 text-sm text-charcoal/60">New settings from the atelier.</p>
+              </Reveal>
             </div>
-          ))}
+          </div>
+          <RevealGroup className="mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+            {featured.map((product) => (
+              <RevealItem key={product.slug}>
+                <ProductCard product={product} collectionSlug={product.collectionSlug} />
+              </RevealItem>
+            ))}
+          </RevealGroup>
         </div>
       </section>
+
+      <CraftsmanshipStory />
+
+      <PrivateClientSection />
     </div>
   );
 }

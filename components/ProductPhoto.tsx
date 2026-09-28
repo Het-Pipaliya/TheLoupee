@@ -25,7 +25,7 @@ export default function ProductPhoto({
         alt={alt}
         fill
         priority={priority}
-        className="object-contain p-6"
+        className="object-contain p-6 transition-transform duration-700 ease-out group-hover:scale-[1.045]"
         sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
       />
     </div>
